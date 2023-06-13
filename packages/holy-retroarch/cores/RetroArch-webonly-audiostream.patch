@@ -1,0 +1,33 @@
+diff --git a/Makefile.emscripten b/Makefile.emscripten
+index 32ad2e0fe3..6474a85ba0 100644
+--- a/Makefile.emscripten
++++ b/Makefile.emscripten
+@@ -67,6 +67,7 @@ OBJDIR := obj-emscripten
+ LIBS    := -s USE_ZLIB=1
+ LDFLAGS := -L. --no-heap-copy -s $(LIBS) -s TOTAL_MEMORY=$(MEMORY) -s NO_EXIT_RUNTIME=0 -s FULL_ES2=1 -s "EXTRA_EXPORTED_RUNTIME_METHODS=['callMain']" \
+            -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS="['_main', '_malloc', '_cmd_savefiles', '_cmd_save_state', '_cmd_load_state', '_cmd_take_screenshot']" \
++           -s ENVIRONMENT="web" \
+            --js-library emscripten/library_rwebaudio.js \
+            --js-library emscripten/library_rwebcam.js \
+            --js-library emscripten/library_errno_codes.js
+diff --git a/emscripten/library_rwebaudio.js b/emscripten/library_rwebaudio.js
+index 5babed2a43..5b7c73e2d7 100644
+--- a/emscripten/library_rwebaudio.js
++++ b/emscripten/library_rwebaudio.js
+@@ -65,6 +65,7 @@ var LibraryRWebAudio = {
+          const bufferSource = RA.context.createBufferSource();
+          bufferSource.buffer = RA.buffers[index];
+          bufferSource.connect(RA.context.destination);
++         bufferSource.connect(RA.xdest) // [MediaStream] step2:  connect bufferSource to new media stream destination
+          bufferSource.start(startTime);
+ 
+          RA.bufIndex++;
+@@ -84,7 +85,7 @@ var LibraryRWebAudio = {
+       if (!ac) return 0;
+ 
+       RA.context = new ac();
+-
++      RA.xdest = RA.context.createMediaStreamDestination() // [MediaStream] step1: create new media stream destination
+       RA.numBuffers = ((latency * RA.context.sampleRate) / (1000 * RA.BUFFER_SIZE))|0;
+       if (RA.numBuffers < 2) RA.numBuffers = 2;
+ 

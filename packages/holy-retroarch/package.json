@@ -1,0 +1,33 @@
+{
+  "name": "holy-retroarch",
+  "version": "0.0.21",
+  "author": "Dimitri Karpov <karpov.dimon@gmail.com>",
+  "description": "emscripten retroarch cores js wrapper",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "retroarch",
+    "nes",
+    "emulator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimitrikarpov/holy-retroarch.git"
+  },
+  "scripts": {
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "tsup": "^6.7.0"
+  }
+}

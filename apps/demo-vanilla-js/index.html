@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla JS Demo</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <h1>how to start</h1>
+    <ol>
+      <li>
+        <input type="file" name="rom" id="rom" />
+        ⬅️ select ROM
+      </li>
+
+      <li>
+        <select name="core" id="core">
+          <option value="genesis_plus_gx_libretro">sega</option>
+          <option value="fceumm_libretro">nes</option>
+        </select>
+        ⬅️ select core
+      </li>
+      <li>
+        <button id="load">load</button>
+        ⬅️ press LOAD button to load Core and create Retroarch instance
+      </li>
+      <li><button id="start">start</button> ⬅️ start Retroarch</li>
+      <li><button id="unload">unload</button> ⬅️ unload Retroarch</li>
+      <li>
+        <b>GOTO 1;</b> ⬆️ now You can select new ROM and Core and start them
+        without page reload 🤠
+      </li>
+    </ol>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

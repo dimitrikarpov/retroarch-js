@@ -1,0 +1,16 @@
+diff --git a/Makefile.emscripten b/Makefile.emscripten
+index e6c092f..f5c1f89 100644
+--- a/Makefile.emscripten
++++ b/Makefile.emscripten
+@@ -70,6 +70,11 @@ OBJDIR := obj-emscripten
+ LIBS    := -s USE_ZLIB=1
+ LDFLAGS := -L. --no-heap-copy -s $(LIBS) -s TOTAL_MEMORY=$(MEMORY) -s NO_EXIT_RUNTIME=0 -s FULL_ES2=1 -s "EXTRA_EXPORTED_RUNTIME_METHODS=['callMain']" \
+            -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS="['_main', '_malloc', '_cmd_savefiles', '_cmd_save_state', '_cmd_load_state', '_cmd_take_screenshot']" \
++           -s ENVIRONMENT="web" \
++           -s MODULARIZE \
++           -s EXPORT_ES6 \
++           -s EXPORT_NAME="'holyretroarch'" \
++           -s EXPORT_ALL \
+            --js-library emscripten/library_rwebaudio.js \
+            --js-library emscripten/library_rwebcam.js \
+            --js-library emscripten/library_errno_codes.js

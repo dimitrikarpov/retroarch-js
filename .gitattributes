@@ -1,0 +1,3 @@
+packages/holy-retrorach/cores/* linguist-vendored
+packages/holy-retrorach/demo/* linguist-vendored
+packages/holy-retrorach/dist/* linguist-vendored

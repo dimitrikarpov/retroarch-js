@@ -13,7 +13,7 @@
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "name": "my-repo2",
+  "name": "retroarch-headless",
   "packageManager": "npm@8.19.2",
   "workspaces": [
     "apps/*",
