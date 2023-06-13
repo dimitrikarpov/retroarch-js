@@ -1,0 +1,18 @@
+.my-awesome-component {
+  background: #6750a4;
+  color: #ffffff;
+  border: 0;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 0.3s background;
+}
+.my-awesome-component:hover,
+.my-awesome-component:focus-visible {
+  transition: 0.3s background;
+  background: #432b7e;
+}
+.my-awesome-component:focus-visible {
+  outline: 4px dashed #49454e;
+}
