@@ -1,6 +1,6 @@
 {
-  "name": "holy-retroarch",
-  "version": "0.0.21",
+  "name": "retroarch-headless-core",
+  "version": "0.0.22",
   "author": "Dimitri Karpov <karpov.dimon@gmail.com>",
   "description": "emscripten retroarch cores js wrapper",
   "license": "MIT",

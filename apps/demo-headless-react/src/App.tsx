@@ -1,4 +1,4 @@
-import { Button } from "retroarch-headless-react"
+import { Button } from "retroarch-headless-ui"
 
 function App() {
   return (

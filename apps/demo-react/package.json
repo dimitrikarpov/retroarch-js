@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "holy-retroarch": "*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "retroarch-headless-core": "*"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
