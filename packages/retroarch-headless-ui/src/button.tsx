@@ -1,5 +1,4 @@
 import React from "react"
-import "./style.css"
 import { createRetroarch } from "retroarch-headless-core"
 
 export type ButtonProps = {

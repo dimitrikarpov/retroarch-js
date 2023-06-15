@@ -1,11 +1,19 @@
-import { Button } from "retroarch-headless-ui"
+import { useState } from "react"
+import { fetchCore } from "retroarch-headless-core"
+import { Retroarch } from "./Retroarch"
 
 function App() {
   return (
-    <>
-      <h1>aaa</h1>
-      <Button title="aad" />
-    </>
+    <Retroarch>
+      <Retroarch.Canvas>
+        <Retroarch.StartButton />
+      </Retroarch.Canvas>
+
+      <Retroarch.Loader
+        coreUrl="https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/fceumm_libretro.js"
+        romUrl="http://localhost:3000/Gun Nac (Japan).nes"
+      />
+    </Retroarch>
   )
 }
 
