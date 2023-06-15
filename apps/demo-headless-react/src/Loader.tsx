@@ -1,6 +1,14 @@
 import { useState } from "react"
 import { fetchCore } from "retroarch-headless-core"
 import { useRetroarchContext } from "./RetroarchContext"
+import { LoaderContext } from "./LoaderContext"
+import { LoaderButton } from "./LoaderButton"
+import { LoaderProgress } from "./LoaderProgress"
+
+type RetroarchLoaderComposition = {
+  LoaderButton: typeof LoaderButton
+  LoaderProgress: typeof LoaderProgress
+}
 
 type Props = {
   coreUrl: string
@@ -8,14 +16,16 @@ type Props = {
   romBinary?: Uint8Array
   beforeLoad?: () => void
   onLoad?: () => void
+  children: React.ReactNode
 }
 
-export const Loader: React.FunctionComponent<Props> = ({
+const Loader: React.FunctionComponent<Props> & RetroarchLoaderComposition = ({
   coreUrl,
   romUrl,
   romBinary,
   beforeLoad,
   onLoad,
+  children,
 }) => {
   const [isCoreLoaded, setIsCoreLoaded] = useState(false)
   const [isRomLoaded, setIsRomLoaded] = useState(false)
@@ -42,33 +52,18 @@ export const Loader: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <div>
-      {!!showLoadButton && <button onClick={onLoadClick}>LOAD</button>}
-      {!showLoadButton && (
-        <LoadingInfo isCoreLoaded={isCoreLoaded} isRomLoaded={isRomLoaded} />
-      )}
-    </div>
+    <LoaderContext.Provider
+      value={{ isCoreLoaded, isRomLoaded, showLoadButton, onLoadClick }}
+    >
+      <div>{children}</div>
+    </LoaderContext.Provider>
   )
 }
 
-type LoadingInfoProps = {
-  isCoreLoaded: boolean
-  isRomLoaded: boolean
-}
+Loader.LoaderButton = LoaderButton
+Loader.LoaderProgress = LoaderProgress
 
-const LoadingInfo: React.FunctionComponent<LoadingInfoProps> = ({
-  isCoreLoaded,
-  isRomLoaded,
-}) => {
-  return (
-    <>
-      {!isCoreLoaded && <p>core is loading...</p>}
-      {!!isCoreLoaded && <p>CORE is LOADED</p>}
-      {!isRomLoaded && <p>rom is loading...</p>}
-      {!!isRomLoaded && <p>ROM is LOADED</p>}
-    </>
-  )
-}
+export { Loader }
 
 const fetchRom = async (romUrl: string) => {
   const response = await fetch(romUrl)

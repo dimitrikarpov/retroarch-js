@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { Retroarch as RetroarchCore, buildCore } from "retroarch-headless-core"
 import { Loader } from "./Loader"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
