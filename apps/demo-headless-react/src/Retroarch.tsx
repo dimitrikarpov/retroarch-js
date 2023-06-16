@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Retroarch as RetroarchCore, buildCore } from "retroarch-headless-core"
 import { Loader } from "./Loader"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
@@ -19,6 +19,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   RetroarchComposition = ({ children }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const retroarchRef = useRef<RetroarchCore>()
+  const [isReadyToStart, setIsReadyStart] = useState(false)
 
   const initRetroarch = async ({
     coreFactory,
@@ -36,6 +37,8 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
 
     retroarchRef.current = new RetroarchCore(core, { romBinary: rom })
 
+    setIsReadyStart(true)
+
     console.log({
       canvasRef: canvasRef.current,
       retroarchRef: retroarchRef.current,
@@ -44,7 +47,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
 
   return (
     <RetroarchContext.Provider
-      value={{ retroarchRef, initRetroarch, canvasRef }}
+      value={{ retroarchRef, initRetroarch, canvasRef, isReadyToStart }}
     >
       {children}
     </RetroarchContext.Provider>

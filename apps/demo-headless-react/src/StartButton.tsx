@@ -1,13 +1,13 @@
 import { useRetroarchContext } from "./RetroarchContext"
 
 export const StartButton = () => {
-  const { retroarchRef } = useRetroarchContext()
+  const { retroarchRef, isReadyToStart } = useRetroarchContext()
 
   const onClick = () => {
-    if (!retroarchRef.current) return
-
-    retroarchRef.current.start()
+    retroarchRef.current?.start()
   }
+
+  if (!isReadyToStart) return null
 
   return (
     <div>

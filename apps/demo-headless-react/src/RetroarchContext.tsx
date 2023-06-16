@@ -14,6 +14,7 @@ type RetroarchContext = {
   canvasRef: React.RefObject<HTMLCanvasElement>
   retroarchRef: React.MutableRefObject<Retroarch | undefined>
   initRetroarch: (moduleFragments: ModuleFragments) => void
+  isReadyToStart: boolean
 }
 
 export const RetroarchContext = React.createContext<RetroarchContext | null>(
