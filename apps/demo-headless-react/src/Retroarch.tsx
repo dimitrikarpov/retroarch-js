@@ -1,25 +1,49 @@
-import { useRef, useState } from "react"
+import { RefObject, useCallback, useRef, useState } from "react"
 import { Retroarch as RetroarchCore, buildCore } from "retroarch-headless-core"
 import { Loader } from "./Loader"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
 import { Canvas } from "./Canvas"
-import { StartButton } from "./StartButton"
+import { StartScreen } from "./StartScreen"
+import { useResizeObserver } from "./useSizeObserver"
 
 type RetroarchComposition = {
   Canvas: typeof Canvas
   Loader: typeof Loader
-  StartButton: typeof StartButton
+  StartScreen: typeof StartScreen
 }
 
 type RetroarchProps = {
+  containerClassName?: string
+  canvasBoxClassName?: string
   children: React.ReactNode
 }
 
 const Retroarch: React.FunctionComponent<RetroarchProps> &
-  RetroarchComposition = ({ children }) => {
+  RetroarchComposition = ({
+  containerClassName,
+  canvasBoxClassName,
+  children,
+}) => {
+  const canvasBoxRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const retroarchRef = useRef<RetroarchCore>()
   const [isReadyToStart, setIsReadyStart] = useState(false)
+
+  const onContainerResize = useCallback((target: HTMLDivElement) => {
+    resizeCanvas(canvasBoxRef)
+  }, [])
+
+  const containerRef = useResizeObserver(onContainerResize)
+
+  const resizeCanvas = (canvasBoxRef: RefObject<HTMLDivElement>) => {
+    if (retroarchRef.current?.status !== "started" || !canvasBoxRef.current)
+      return
+
+    retroarchRef.current?.setCanvasSize(
+      canvasBoxRef.current.clientWidth,
+      canvasBoxRef.current.clientWidth / (800 / 600),
+    )
+  }
 
   const initRetroarch = async ({
     coreFactory,
@@ -27,7 +51,6 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     rom,
   }: ModuleFragments) => {
     if (!canvasRef.current || retroarchRef.current) return
-    console.log({ rom })
 
     const core = await buildCore({
       canvas: canvasRef.current,
@@ -38,24 +61,25 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     retroarchRef.current = new RetroarchCore(core, { romBinary: rom })
 
     setIsReadyStart(true)
-
-    console.log({
-      canvasRef: canvasRef.current,
-      retroarchRef: retroarchRef.current,
-    })
   }
 
   return (
     <RetroarchContext.Provider
       value={{ retroarchRef, initRetroarch, canvasRef, isReadyToStart }}
     >
-      {children}
+      <div ref={containerRef} className={containerClassName}>
+        <div ref={canvasBoxRef} className={canvasBoxClassName}>
+          <canvas ref={canvasRef} id="canvas"></canvas>
+
+          {children}
+        </div>
+      </div>
     </RetroarchContext.Provider>
   )
 }
 
 Retroarch.Canvas = Canvas
 Retroarch.Loader = Loader
-Retroarch.StartButton = StartButton
+Retroarch.StartScreen = StartScreen
 
 export { Retroarch }

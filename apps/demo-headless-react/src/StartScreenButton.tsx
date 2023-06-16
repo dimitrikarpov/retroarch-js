@@ -1,6 +1,6 @@
 import { useRetroarchContext } from "./RetroarchContext"
 
-export const StartButton = () => {
+export const StartScreenButton = () => {
   const { retroarchRef, isReadyToStart } = useRetroarchContext()
 
   const onClick = () => {

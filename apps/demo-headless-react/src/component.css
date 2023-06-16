@@ -1,0 +1,13 @@
+.retroarch__container {
+  position: relative;
+  display: flex;
+  aspect-ratio: calc(800 / 600);
+  justify-content: center;
+}
+
+.retroarch__canvas-box {
+  position: relative;
+  aspect-ratio: calc(800 / 600);
+  max-height: 100%;
+  max-width: 100%;
+}
