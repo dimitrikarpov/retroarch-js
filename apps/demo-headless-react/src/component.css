@@ -12,7 +12,7 @@
   max-width: 100%;
 }
 
-.retroarch-load-screen__container {
+.retroarch-screen {
   position: absolute;
   inset: 0px;
 
@@ -20,30 +20,12 @@
   align-content: center;
   justify-content: center;
 
-  background: rgb(63, 94, 251);
+  /* background: rgb(63, 94, 251);
   background: linear-gradient(
     34deg,
     rgb(63, 94, 251) 0%,
     rgba(151, 60, 136, 0.801) 100%
   );
 
-  color: white;
-}
-
-.retroarch-start-screen__container {
-  position: absolute;
-  inset: 0px;
-
-  display: grid;
-  align-content: center;
-  justify-content: center;
-
-  background: rgb(63, 94, 251);
-  background: linear-gradient(
-    34deg,
-    rgb(63, 94, 251) 0%,
-    rgba(151, 60, 136, 0.801) 100%
-  );
-
-  color: white;
+  color: white; */
 }

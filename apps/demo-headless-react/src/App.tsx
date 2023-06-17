@@ -7,12 +7,12 @@ function App() {
       containerClassName="retroarch__container"
       canvasBoxClassName="retroarch__canvas-box"
     >
-      <Retroarch.StartScreen className="retroarch-start-screen__container">
+      <Retroarch.StartScreen className="retroarch-screen">
         <Retroarch.StartScreen.Button>! Start !</Retroarch.StartScreen.Button>
       </Retroarch.StartScreen>
 
       <Retroarch.LoaderScreen
-        className="retroarch-load-screen__container"
+        className="retroarch-screen"
         coreUrl="https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/fceumm_libretro.js"
         romUrl="http://localhost:3000/Gun Nac (Japan).nes"
       >
