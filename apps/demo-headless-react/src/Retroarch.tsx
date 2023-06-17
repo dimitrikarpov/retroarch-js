@@ -1,10 +1,10 @@
-import { RefObject, useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Retroarch as RetroarchCore, buildCore } from "retroarch-headless-core"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
 import { Canvas } from "./Canvas"
 import { StartScreen } from "./StartScreen"
-import { useResizeObserver } from "./useSizeObserver"
 import { LoaderScreen } from "./LoaderScreen"
+import { useResizeCanvas } from "./useResizeCanvas"
 
 type RetroarchComposition = {
   Canvas: typeof Canvas
@@ -30,21 +30,10 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   const [isReadyToStart, setIsReadyStart] = useState(false)
   const [isStarted, setIsStarted] = useState(false)
 
-  const onContainerResize = useCallback((target: HTMLDivElement) => {
-    resizeCanvas(canvasBoxRef)
-  }, [])
-
-  const containerRef = useResizeObserver(onContainerResize)
-
-  const resizeCanvas = (canvasBoxRef: RefObject<HTMLDivElement>) => {
-    if (retroarchRef.current?.status !== "started" || !canvasBoxRef.current)
-      return
-
-    retroarchRef.current?.setCanvasSize(
-      canvasBoxRef.current.clientWidth,
-      canvasBoxRef.current.clientWidth / (800 / 600),
-    )
-  }
+  const { resizeCanvas, containerRef } = useResizeCanvas(
+    canvasBoxRef,
+    retroarchRef,
+  )
 
   const initRetroarch = async ({
     coreFactory,
@@ -83,9 +72,9 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
       value={{
         canvasRef,
         retroarchRef,
-        initRetroarch,
         isReadyToStart,
         isStarted,
+        initRetroarch,
         startRetroarch,
       }}
     >
