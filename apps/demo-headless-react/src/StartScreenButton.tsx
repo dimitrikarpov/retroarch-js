@@ -1,17 +1,17 @@
 import { useRetroarchContext } from "./RetroarchContext"
 
-export const StartScreenButton = () => {
-  const { retroarchRef, isReadyToStart } = useRetroarchContext()
+type Props = {
+  children?: React.ReactNode
+}
 
-  const onClick = () => {
-    retroarchRef.current?.start()
-  }
-
-  if (!isReadyToStart) return null
+export const StartScreenButton: React.FunctionComponent<Props> = ({
+  children,
+}) => {
+  const { startRetroarch } = useRetroarchContext()
 
   return (
     <div>
-      <button onClick={onClick}>start the game</button>
+      <button onClick={startRetroarch}>{children || "start"}</button>
     </div>
   )
 }

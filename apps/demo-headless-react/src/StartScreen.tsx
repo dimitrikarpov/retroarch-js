@@ -1,3 +1,4 @@
+import { useRetroarchContext } from "./RetroarchContext"
 import { StartScreenButton } from "./StartScreenButton"
 
 type StartScreenComposition = {
@@ -5,13 +6,19 @@ type StartScreenComposition = {
 }
 
 type Props = {
+  className?: string
   children?: React.ReactNode
 }
 
 const StartScreen: React.FunctionComponent<Props> & StartScreenComposition = ({
+  className,
   children,
 }) => {
-  return <div>{children}</div>
+  const { isReadyToStart, isStarted } = useRetroarchContext()
+
+  if (!isReadyToStart || isStarted) return null
+
+  return <div className={className}>{children}</div>
 }
 
 StartScreen.Button = StartScreenButton

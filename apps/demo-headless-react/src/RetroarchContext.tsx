@@ -13,8 +13,10 @@ export type ModuleFragments = {
 type RetroarchContext = {
   canvasRef: React.RefObject<HTMLCanvasElement>
   retroarchRef: React.MutableRefObject<Retroarch | undefined>
-  initRetroarch: (moduleFragments: ModuleFragments) => void
   isReadyToStart: boolean
+  isStarted: boolean
+  initRetroarch: (moduleFragments: ModuleFragments) => void
+  startRetroarch: () => void
 }
 
 export const RetroarchContext = React.createContext<RetroarchContext | null>(

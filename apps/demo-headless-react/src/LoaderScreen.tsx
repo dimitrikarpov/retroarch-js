@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { fetchCore } from "retroarch-headless-core"
 import { useRetroarchContext } from "./RetroarchContext"
-import { LoaderContext } from "./LoaderContext"
-import { LoaderButton } from "./LoaderButton"
-import { LoaderProgress } from "./LoaderProgress"
+import { LoaderScreenButton } from "./LoaderScreenButton"
+import { LoaderScreenProgress } from "./LoaderScreenProgress"
+import { LoaderScreenContext } from "./LoaderScreenContext"
 
 type RetroarchLoaderComposition = {
-  LoaderButton: typeof LoaderButton
-  LoaderProgress: typeof LoaderProgress
+  Button: typeof LoaderScreenButton
+  Progress: typeof LoaderScreenProgress
 }
 
 type Props = {
@@ -17,21 +17,24 @@ type Props = {
   beforeLoad?: () => void
   onLoad?: () => void
   children: React.ReactNode
+  className?: string
 }
 
-const Loader: React.FunctionComponent<Props> & RetroarchLoaderComposition = ({
+const LoaderScreen: React.FunctionComponent<Props> &
+  RetroarchLoaderComposition = ({
   coreUrl,
   romUrl,
   romBinary,
   beforeLoad,
   onLoad,
   children,
+  className,
 }) => {
   const [isCoreLoaded, setIsCoreLoaded] = useState(false)
   const [isRomLoaded, setIsRomLoaded] = useState(false)
   const [showLoadButton, setShowLoadButton] = useState(true)
 
-  const { initRetroarch } = useRetroarchContext()
+  const { initRetroarch, isReadyToStart } = useRetroarchContext()
 
   const onLoadClick = async () => {
     beforeLoad?.()
@@ -51,19 +54,21 @@ const Loader: React.FunctionComponent<Props> & RetroarchLoaderComposition = ({
     setIsRomLoaded(true)
   }
 
+  if (isReadyToStart) return null
+
   return (
-    <LoaderContext.Provider
+    <LoaderScreenContext.Provider
       value={{ isCoreLoaded, isRomLoaded, showLoadButton, onLoadClick }}
     >
-      <div>{children}</div>
-    </LoaderContext.Provider>
+      <div className={className}>{children}</div>
+    </LoaderScreenContext.Provider>
   )
 }
 
-Loader.LoaderButton = LoaderButton
-Loader.LoaderProgress = LoaderProgress
+LoaderScreen.Button = LoaderScreenButton
+LoaderScreen.Progress = LoaderScreenProgress
 
-export { Loader }
+export { LoaderScreen }
 
 const fetchRom = async (romUrl: string) => {
   const response = await fetch(romUrl)

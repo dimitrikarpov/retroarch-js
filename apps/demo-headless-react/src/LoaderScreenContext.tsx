@@ -1,16 +1,17 @@
 import React from "react"
 
-type LoaderContext = {
+type LoaderScreenContext = {
   showLoadButton: boolean
   isRomLoaded: boolean
   isCoreLoaded: boolean
   onLoadClick: () => void
 }
 
-export const LoaderContext = React.createContext<LoaderContext | null>(null)
+export const LoaderScreenContext =
+  React.createContext<LoaderScreenContext | null>(null)
 
-export function useRetroarchLoaderContext() {
-  const context = React.useContext(LoaderContext)
+export function useRetroarchLoaderScreen() {
+  const context = React.useContext(LoaderScreenContext)
 
   if (!context) {
     throw new Error(

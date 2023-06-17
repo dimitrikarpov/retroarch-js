@@ -1,14 +1,14 @@
-import { RefObject, useCallback, useRef, useState } from "react"
+import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 import { Retroarch as RetroarchCore, buildCore } from "retroarch-headless-core"
-import { Loader } from "./Loader"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
 import { Canvas } from "./Canvas"
 import { StartScreen } from "./StartScreen"
 import { useResizeObserver } from "./useSizeObserver"
+import { LoaderScreen } from "./LoaderScreen"
 
 type RetroarchComposition = {
   Canvas: typeof Canvas
-  Loader: typeof Loader
+  LoaderScreen: typeof LoaderScreen
   StartScreen: typeof StartScreen
 }
 
@@ -28,6 +28,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const retroarchRef = useRef<RetroarchCore>()
   const [isReadyToStart, setIsReadyStart] = useState(false)
+  const [isStarted, setIsStarted] = useState(false)
 
   const onContainerResize = useCallback((target: HTMLDivElement) => {
     resizeCanvas(canvasBoxRef)
@@ -63,9 +64,30 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     setIsReadyStart(true)
   }
 
+  const startRetroarch = () => {
+    retroarchRef.current?.start()
+    resizeCanvas(canvasBoxRef)
+    setIsStarted(true)
+  }
+
+  useEffect(() => {
+    return () => {
+      if (!retroarchRef.current) return
+
+      retroarchRef.current.destroy()
+    }
+  }, [])
+
   return (
     <RetroarchContext.Provider
-      value={{ retroarchRef, initRetroarch, canvasRef, isReadyToStart }}
+      value={{
+        canvasRef,
+        retroarchRef,
+        initRetroarch,
+        isReadyToStart,
+        isStarted,
+        startRetroarch,
+      }}
     >
       <div ref={containerRef} className={containerClassName}>
         <div ref={canvasBoxRef} className={canvasBoxClassName}>
@@ -79,7 +101,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
 }
 
 Retroarch.Canvas = Canvas
-Retroarch.Loader = Loader
+Retroarch.LoaderScreen = LoaderScreen
 Retroarch.StartScreen = StartScreen
 
 export { Retroarch }
