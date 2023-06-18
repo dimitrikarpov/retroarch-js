@@ -19,13 +19,23 @@
   display: grid;
   align-content: center;
   justify-content: center;
+}
 
-  /* background: rgb(63, 94, 251);
-  background: linear-gradient(
-    34deg,
-    rgb(63, 94, 251) 0%,
-    rgba(151, 60, 136, 0.801) 100%
-  );
+.retroarch__overlay {
+  position: absolute;
+  inset: 0px;
 
-  color: white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.retroarch__overlay[data-visible="true"] {
+  cursor: default;
+  opacity: 1;
+}
+
+.retroarch__overlay[data-visible="false"] {
+  cursor: none;
+  opacity: 0;
 }

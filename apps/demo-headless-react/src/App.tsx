@@ -7,6 +7,10 @@ function App() {
       containerClassName="retroarch__container"
       canvasBoxClassName="retroarch__canvas-box"
     >
+      <Retroarch.Overlay>
+        <h1>ffffffffffasdfasfasdf</h1>
+      </Retroarch.Overlay>
+
       <Retroarch.StartScreen className="retroarch-screen">
         <Retroarch.StartScreen.Button>! Start !</Retroarch.StartScreen.Button>
       </Retroarch.StartScreen>
