@@ -1,4 +1,4 @@
-import { createRetroarch } from "retroarch-headless-core"
+import { createRetroarch } from "retroarch-core"
 
 const registerUIHandlers = (retroarch) => {
   /* START HANDLER */

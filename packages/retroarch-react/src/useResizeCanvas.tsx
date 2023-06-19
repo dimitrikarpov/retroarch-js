@@ -1,5 +1,5 @@
 import { RefObject, useCallback } from "react"
-import { Retroarch as RetroarchCore } from "retroarch-headless-core"
+import { Retroarch as RetroarchCore } from "retroarch-core"
 
 import { useResizeObserver } from "./useSizeObserver"
 

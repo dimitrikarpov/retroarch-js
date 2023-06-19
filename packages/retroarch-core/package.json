@@ -1,5 +1,5 @@
 {
-  "name": "retroarch-headless-core",
+  "name": "retroarch-core",
   "version": "0.0.22",
   "author": "Dimitri Karpov <karpov.dimon@gmail.com>",
   "description": "emscripten retroarch cores js wrapper",

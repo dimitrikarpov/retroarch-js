@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { fetchCore } from "retroarch-headless-core"
+import { fetchCore } from "retroarch-core"
 import { useRetroarchContext } from "./RetroarchContext"
 import { LoaderScreenButton } from "./LoaderScreenButton"
 import { LoaderScreenProgress } from "./LoaderScreenProgress"

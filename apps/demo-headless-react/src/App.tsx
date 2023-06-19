@@ -1,4 +1,4 @@
-import { Retroarch } from "retroarch-headless-ui"
+import { Retroarch } from "retroarch-react"
 import "./basic.css"
 import "./main.css"
 

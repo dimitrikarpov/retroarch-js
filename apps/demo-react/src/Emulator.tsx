@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef, useState } from "react"
-import { Retroarch, createRetroarch } from "retroarch-headless-core"
+import { Retroarch, createRetroarch } from "retroarch-core"
 
 type Core = "fceumm_libretro" | "genesis_plus_gx_libretro"
 

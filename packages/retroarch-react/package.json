@@ -1,5 +1,5 @@
 {
-  "name": "retroarch-headless-ui",
+  "name": "retroarch-react",
   "version": "0.0.1",
   "author": "Dimitri Karpov <karpov.dimon@gmail.com>",
   "description": "Headless Retroarch UI",
@@ -16,7 +16,7 @@
     "lint": "tsc"
   },
   "dependencies": {
-    "retroarch-headless-core": "*"
+    "retroarch-core": "*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

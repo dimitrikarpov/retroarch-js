@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from "react"
-import { Retroarch as RetroarchCore, buildCore } from "retroarch-headless-core"
+import { Retroarch as RetroarchCore, buildCore } from "retroarch-core"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
-import { Canvas } from "./Canvas"
 import { StartScreen } from "./StartScreen"
 import { LoaderScreen } from "./LoaderScreen"
 import { useResizeCanvas } from "./useResizeCanvas"
 import { Overlay } from "./Overlay"
 
 type RetroarchComposition = {
-  Canvas: typeof Canvas
   LoaderScreen: typeof LoaderScreen
   StartScreen: typeof StartScreen
   Overlay: typeof Overlay
@@ -92,7 +90,6 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   )
 }
 
-Retroarch.Canvas = Canvas
 Retroarch.LoaderScreen = LoaderScreen
 Retroarch.StartScreen = StartScreen
 Retroarch.Overlay = Overlay

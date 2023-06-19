@@ -1,5 +1,5 @@
 import React from "react"
-import { Retroarch, fetchCore } from "retroarch-headless-core"
+import { Retroarch, fetchCore } from "retroarch-core"
 
 export type CoreOptions = Awaited<ReturnType<typeof fetchCore>>["coreOptions"]
 
