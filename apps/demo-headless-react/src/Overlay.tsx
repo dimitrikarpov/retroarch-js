@@ -1,5 +1,10 @@
 import { useRef, useState } from "react"
 import { useRetroarchContext } from "./RetroarchContext"
+import { FullscreenButton } from "./FullscreenButton"
+
+type OverlayComposition = {
+  FullscreenButton: typeof FullscreenButton
+}
 
 type Props = {
   /** overlay class name
@@ -21,8 +26,8 @@ type Props = {
    * }
    *
    * .retroarch__overlay[data-visible="false"] {
-   *  cursor: none;
-   *  opacity: 0;
+   *   cursor: none;
+   *   opacity: 0;
    * }
    * ```
    */
@@ -32,7 +37,7 @@ type Props = {
   children?: React.ReactNode
 }
 
-export const Overlay: React.FunctionComponent<Props> = ({
+const Overlay: React.FunctionComponent<Props> & OverlayComposition = ({
   children,
   className = "retroarch__overlay",
   timeout = 3000,
@@ -69,3 +74,7 @@ export const Overlay: React.FunctionComponent<Props> = ({
     </div>
   )
 }
+
+Overlay.FullscreenButton = FullscreenButton
+
+export { Overlay }

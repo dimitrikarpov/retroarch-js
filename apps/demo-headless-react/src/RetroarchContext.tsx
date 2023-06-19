@@ -12,6 +12,7 @@ export type ModuleFragments = {
 
 type RetroarchContext = {
   canvasRef: React.RefObject<HTMLCanvasElement>
+  canvasBoxRef: React.RefObject<HTMLDivElement>
   retroarchRef: React.MutableRefObject<Retroarch | undefined>
   isReadyToStart: boolean
   isStarted: boolean

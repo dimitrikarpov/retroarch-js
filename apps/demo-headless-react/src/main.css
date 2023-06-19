@@ -1,0 +1,13 @@
+.overlay__container {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(12, 12, 12, 0.719);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  color: white;
+}

@@ -1,5 +1,6 @@
 import { Retroarch } from "./Retroarch"
 import "./component.css"
+import "./main.css"
 
 function App() {
   return (
@@ -8,7 +9,13 @@ function App() {
       canvasBoxClassName="retroarch__canvas-box"
     >
       <Retroarch.Overlay>
-        <h1>ffffffffffasdfasfasdf</h1>
+        <div className="overlay__container">
+          <h1>ffffffffffasdfasfasdf</h1>
+          <Retroarch.Overlay.FullscreenButton
+            switchOn={<span>[ ]</span>}
+            switchOff={<span>X</span>}
+          />
+        </div>
       </Retroarch.Overlay>
 
       <Retroarch.StartScreen className="retroarch-screen">

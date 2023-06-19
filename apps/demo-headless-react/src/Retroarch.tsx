@@ -73,6 +73,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     <RetroarchContext.Provider
       value={{
         canvasRef,
+        canvasBoxRef,
         retroarchRef,
         isReadyToStart,
         isStarted,
