@@ -11,7 +11,7 @@ type Props = {
 }
 
 const StartScreen: React.FunctionComponent<Props> & StartScreenComposition = ({
-  className,
+  className = "retroarch-screen",
   children,
 }) => {
   const { isReadyToStart, isStarted } = useRetroarchContext()

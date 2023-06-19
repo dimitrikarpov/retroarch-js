@@ -28,7 +28,7 @@ const LoaderScreen: React.FunctionComponent<Props> &
   beforeLoad,
   onLoad,
   children,
-  className,
+  className = "retroarch-screen",
 }) => {
   const [isCoreLoaded, setIsCoreLoaded] = useState(false)
   const [isRomLoaded, setIsRomLoaded] = useState(false)

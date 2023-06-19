@@ -1,7 +1,7 @@
 .retroarch__container {
   position: relative;
-  display: flex;
   aspect-ratio: calc(800 / 600);
+  display: flex;
   justify-content: center;
 }
 
@@ -21,7 +21,7 @@
   justify-content: center;
 }
 
-.retroarch__overlay {
+.retroarch-overlay {
   position: absolute;
   inset: 0px;
 
@@ -30,12 +30,12 @@
   justify-content: flex-end;
 }
 
-.retroarch__overlay[data-visible="true"] {
+.retroarch-overlay[data-visible="true"] {
   cursor: default;
   opacity: 1;
 }
 
-.retroarch__overlay[data-visible="false"] {
+.retroarch-overlay[data-visible="false"] {
   cursor: none;
   opacity: 0;
 }

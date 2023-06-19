@@ -9,23 +9,23 @@ type OverlayComposition = {
 type Props = {
   /** overlay class name
    *
-   * default class name `.retroarch__overlay`
+   * default class name `.retroarch-overlay`
    *
    * should have these rules to stretch container
    * ```css
-   * .retroarch__overlay {
+   * .retroarch-overlay {
    *   position: absolute;
    *   inset: 0px;
    * }
    * ```
    * also it has data attribute to set visibility state `data-visible`
    * ```css
-   * .retroarch__overlay[data-visible="true"] {
+   * .retroarch-overlay[data-visible="true"] {
    *   cursor: default;
    *   opacity: 1;
    * }
    *
-   * .retroarch__overlay[data-visible="false"] {
+   * .retroarch-overlay[data-visible="false"] {
    *   cursor: none;
    *   opacity: 0;
    * }
@@ -39,7 +39,7 @@ type Props = {
 
 const Overlay: React.FunctionComponent<Props> & OverlayComposition = ({
   children,
-  className = "retroarch__overlay",
+  className = "retroarch-overlay",
   timeout = 3000,
 }) => {
   const timerRef = useRef<NodeJS.Timeout>()

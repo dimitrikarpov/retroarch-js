@@ -22,8 +22,8 @@ type RetroarchProps = {
 
 const Retroarch: React.FunctionComponent<RetroarchProps> &
   RetroarchComposition = ({
-  containerClassName,
-  canvasBoxClassName,
+  containerClassName = "retroarch__container",
+  canvasBoxClassName = "retroarch__canvas-box",
   children,
 }) => {
   const canvasBoxRef = useRef<HTMLDivElement>(null)
