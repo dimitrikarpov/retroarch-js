@@ -1,5 +1,5 @@
-import { Retroarch } from "./Retroarch"
-import "./component.css"
+import { Retroarch } from "retroarch-headless-ui"
+import "./basic.css"
 import "./main.css"
 
 function App() {

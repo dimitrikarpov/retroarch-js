@@ -1,0 +1,41 @@
+.retroarch__container {
+  position: relative;
+  aspect-ratio: calc(800 / 600);
+  display: flex;
+  justify-content: center;
+}
+
+.retroarch__canvas-box {
+  position: relative;
+  aspect-ratio: calc(800 / 600);
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.retroarch-screen {
+  position: absolute;
+  inset: 0px;
+
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.retroarch-overlay {
+  position: absolute;
+  inset: 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.retroarch-overlay[data-visible="true"] {
+  cursor: default;
+  opacity: 1;
+}
+
+.retroarch-overlay[data-visible="false"] {
+  cursor: none;
+  opacity: 0;
+}
