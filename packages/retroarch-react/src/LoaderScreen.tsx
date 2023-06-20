@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { CSSProperties, useState } from "react"
 import { fetchCore } from "retroarch-core"
 import { useRetroarchContext } from "./RetroarchContext"
 import { LoaderScreenButton } from "./LoaderScreenButton"
@@ -18,6 +18,7 @@ type Props = {
   onLoad?: () => void
   children: React.ReactNode
   className?: string
+  style?: CSSProperties
 }
 
 const LoaderScreen: React.FunctionComponent<Props> &
@@ -29,6 +30,7 @@ const LoaderScreen: React.FunctionComponent<Props> &
   onLoad,
   children,
   className = "retroarch-screen",
+  style,
 }) => {
   const [isCoreLoaded, setIsCoreLoaded] = useState(false)
   const [isRomLoaded, setIsRomLoaded] = useState(false)
@@ -60,7 +62,9 @@ const LoaderScreen: React.FunctionComponent<Props> &
     <LoaderScreenContext.Provider
       value={{ isCoreLoaded, isRomLoaded, showLoadButton, onLoadClick }}
     >
-      <div className={className}>{children}</div>
+      <div className={className} style={style}>
+        {children}
+      </div>
     </LoaderScreenContext.Provider>
   )
 }
