@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react"
+import { useEffect } from "react"
 import { Retroarch } from "retroarch-react"
 import "./basic.css"
 import "./main.css"
@@ -34,7 +34,11 @@ export const Emulator: React.FunctionComponent<Props> = ({
         <Retroarch.StartScreen.Button />
       </Retroarch.StartScreen>
 
-      <Retroarch.LoaderScreen coreUrl={coreUrl} romBinary={romBinary}>
+      <Retroarch.LoaderScreen
+        loadOnMount
+        coreUrl={coreUrl}
+        romBinary={romBinary}
+      >
         <>
           <Retroarch.LoaderScreen.Button />
           <Retroarch.LoaderScreen.Progress />

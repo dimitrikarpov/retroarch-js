@@ -1,9 +1,9 @@
-import { CSSProperties, useState } from "react"
+import { CSSProperties, useEffect, useState } from "react"
 import { fetchCore } from "retroarch-core"
-import { useRetroarchContext } from "./RetroarchContext"
 import { LoaderScreenButton } from "./LoaderScreenButton"
-import { LoaderScreenProgress } from "./LoaderScreenProgress"
 import { LoaderScreenContext } from "./LoaderScreenContext"
+import { LoaderScreenProgress } from "./LoaderScreenProgress"
+import { useRetroarchContext } from "./RetroarchContext"
 
 type RetroarchLoaderComposition = {
   Button: typeof LoaderScreenButton
@@ -19,6 +19,7 @@ type Props = {
   children: React.ReactNode
   className?: string
   style?: CSSProperties
+  loadOnMount?: boolean
 }
 
 const LoaderScreen: React.FunctionComponent<Props> &
@@ -31,11 +32,11 @@ const LoaderScreen: React.FunctionComponent<Props> &
   children,
   className = "retroarch-screen",
   style,
+  loadOnMount,
 }) => {
   const [isCoreLoaded, setIsCoreLoaded] = useState(false)
   const [isRomLoaded, setIsRomLoaded] = useState(false)
   const [showLoadButton, setShowLoadButton] = useState(true)
-
   const { initRetroarch, isReadyToStart } = useRetroarchContext()
 
   const onLoadClick = async () => {
@@ -60,6 +61,10 @@ const LoaderScreen: React.FunctionComponent<Props> &
 
     setIsRomLoaded(true)
   }
+
+  useEffect(() => {
+    if (loadOnMount) onLoadClick()
+  }, [])
 
   if (isReadyToStart) return null
 
