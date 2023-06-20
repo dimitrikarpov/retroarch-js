@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react"
-import { Retroarch as RetroarchCore, buildCore } from "retroarch-core"
+import {
+  Retroarch as RetroarchCore,
+  buildCore,
+  type RetroarchConfig,
+} from "retroarch-core"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
 import { StartScreen } from "./StartScreen"
 import { LoaderScreen } from "./LoaderScreen"
@@ -16,6 +20,7 @@ type RetroarchProps = {
   containerClassName?: string
   canvasBoxClassName?: string
   children: React.ReactNode
+  config?: RetroarchConfig
 }
 
 const Retroarch: React.FunctionComponent<RetroarchProps> &
@@ -23,6 +28,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   containerClassName = "retroarch__container",
   canvasBoxClassName = "retroarch__canvas-box",
   children,
+  config,
 }) => {
   const canvasBoxRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -49,7 +55,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     })
 
     retroarchRef.current = new RetroarchCore(core, { romBinary: rom })
-
+    retroarchRef.current.copyConfig(config)
     setIsReadyStart(true)
   }
 
@@ -63,8 +69,6 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   useEffect(() => {
     return () => {
       if (!retroarchRef.current) return
-
-      console.log("------ IN RETROARCH ------ DESTROY ----")
 
       retroarchRef.current.destroy()
     }

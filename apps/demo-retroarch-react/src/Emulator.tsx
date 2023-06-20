@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { Retroarch } from "retroarch-react"
 import "./basic.css"
 import "./main.css"
@@ -12,16 +11,6 @@ export const Emulator: React.FunctionComponent<Props> = ({
   coreUrl,
   romBinary,
 }) => {
-  useEffect(() => {
-    return () => {
-      console.log("SHOULD UNMOUNT !!!")
-    }
-  }, [])
-
-  useEffect(() => {
-    console.log("ROM CHANGED !!!")
-  }, [romBinary])
-
   return (
     <Retroarch>
       <Retroarch.Overlay>
@@ -40,7 +29,7 @@ export const Emulator: React.FunctionComponent<Props> = ({
         romBinary={romBinary}
       >
         <>
-          <Retroarch.LoaderScreen.Button />
+          {/* <Retroarch.LoaderScreen.Button /> */}
           <Retroarch.LoaderScreen.Progress />
         </>
       </Retroarch.LoaderScreen>
