@@ -18,7 +18,6 @@ function App() {
     })
 
     setRom(new Uint8Array(buffer))
-    console.log("UPLOEADEDDDD")
   }
 
   return (

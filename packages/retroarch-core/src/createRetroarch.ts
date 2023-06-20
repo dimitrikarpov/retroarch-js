@@ -9,7 +9,7 @@ const replacePostfix = (str: string, target: string, replacement: string) => {
   return `${withoutLastEntry}${replacement}`
 }
 
-type CoreOptions = {
+export type CoreOptions = {
   folder: string
   defaultOptions: Record<string, string>
 }

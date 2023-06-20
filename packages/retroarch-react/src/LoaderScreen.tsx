@@ -48,12 +48,7 @@ const LoaderScreen: React.FunctionComponent<Props> &
 
     setIsCoreLoaded(true)
 
-    let rom: Uint8Array
-    if (romBinary) {
-      rom = romBinary
-    } else {
-      rom = await fetchRom(romUrl!)
-    }
+    const rom = romBinary || (await fetchRom(romUrl!))
 
     initRetroarch({ coreFactory, wasmBinary, coreOptions, rom })
 

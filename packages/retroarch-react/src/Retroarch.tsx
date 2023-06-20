@@ -3,6 +3,7 @@ import {
   Retroarch as RetroarchCore,
   buildCore,
   type RetroarchConfig,
+  type CoreOptions,
 } from "retroarch-core"
 import { RetroarchContext, type ModuleFragments } from "./RetroarchContext"
 import { StartScreen } from "./StartScreen"
@@ -21,6 +22,7 @@ type RetroarchProps = {
   canvasBoxClassName?: string
   children: React.ReactNode
   config?: RetroarchConfig
+  coreOptions?: CoreOptions
 }
 
 const Retroarch: React.FunctionComponent<RetroarchProps> &
@@ -29,6 +31,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   canvasBoxClassName = "retroarch__canvas-box",
   children,
   config,
+  coreOptions,
 }) => {
   const canvasBoxRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -45,6 +48,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     coreFactory,
     wasmBinary,
     rom,
+    coreOptions: defaultCoreOptions,
   }: ModuleFragments) => {
     if (!canvasRef.current || retroarchRef.current) return
 
@@ -56,6 +60,14 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
 
     retroarchRef.current = new RetroarchCore(core, { romBinary: rom })
     retroarchRef.current.copyConfig(config)
+    retroarchRef.current.copyOptions(
+      {
+        ...defaultCoreOptions.defaultOptions,
+        ...(coreOptions && { ...coreOptions.defaultOptions }),
+      },
+      defaultCoreOptions.folder,
+    )
+
     setIsReadyStart(true)
   }
 
