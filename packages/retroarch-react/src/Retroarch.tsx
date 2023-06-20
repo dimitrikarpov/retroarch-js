@@ -57,11 +57,14 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     retroarchRef.current?.start()
     resizeCanvas(canvasBoxRef)
     setIsStarted(true)
+    canvasRef.current?.focus()
   }
 
   useEffect(() => {
     return () => {
       if (!retroarchRef.current) return
+
+      console.log("------ IN RETROARCH ------ DESTROY ----")
 
       retroarchRef.current.destroy()
     }

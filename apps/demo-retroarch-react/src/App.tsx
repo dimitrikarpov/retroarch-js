@@ -1,35 +1,37 @@
-import { Retroarch } from "retroarch-react"
 import "./basic.css"
 import "./main.css"
+import { ChangeEvent, useState } from "react"
+import { Emulator } from "./Emulator"
+import { flushSync } from "react-dom"
 
 function App() {
+  const [rom, setRom] = useState<Uint8Array>()
+
+  const onRomUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files?.[0]) return
+
+    const file = e.target.files?.[0]
+    const buffer = await file?.arrayBuffer()
+
+    flushSync(() => {
+      setRom(undefined)
+    })
+
+    setRom(new Uint8Array(buffer))
+    console.log("UPLOEADEDDDD")
+  }
+
   return (
-    <Retroarch>
-      <Retroarch.Overlay>
-        <div className="overlay__container">
-          <Retroarch.Overlay.FullscreenButton
-            switchOn={<span>[ ]</span>}
-            switchOff={<span>X</span>}
-          />
-        </div>
-      </Retroarch.Overlay>
+    <>
+      <input type="file" onChange={onRomUpload} />
 
-      <Retroarch.StartScreen>
-        <Retroarch.StartScreen.Button>! Start !</Retroarch.StartScreen.Button>
-      </Retroarch.StartScreen>
-
-      <Retroarch.LoaderScreen
-        coreUrl="https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/fceumm_libretro.js"
-        romUrl="http://localhost:3000/Gun Nac (Japan).nes"
-      >
-        <>
-          <Retroarch.LoaderScreen.Button>
-            ! Load !
-          </Retroarch.LoaderScreen.Button>
-          <Retroarch.LoaderScreen.Progress />
-        </>
-      </Retroarch.LoaderScreen>
-    </Retroarch>
+      {rom && (
+        <Emulator
+          coreUrl="https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/fceumm_libretro.js"
+          romBinary={rom}
+        />
+      )}
+    </>
   )
 }
 
