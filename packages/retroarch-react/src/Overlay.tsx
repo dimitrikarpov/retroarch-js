@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { useRetroarchContext } from "./RetroarchContext"
 import { FullscreenButton } from "./FullscreenButton"
+import { clsss } from "./clsss"
 
 type OverlayComposition = {
   FullscreenButton: typeof FullscreenButton
@@ -18,20 +19,32 @@ type Props = {
    *   inset: 0px;
    * }
    * ```
-   * also it has data attribute to set visibility state `data-visible`
+   */
+  className?: string
+  /**
+   * visible state of overlay
+   *
+   * default class name `.retroarch-overlay--visible`
    * ```css
-   * .retroarch-overlay[data-visible="true"] {
+   * .retroarch-overlay--visible {
    *   cursor: default;
    *   opacity: 1;
    * }
+   * ```
+   */
+  visibleClassName?: string
+  /**
+   * hidden state of overlay
    *
-   * .retroarch-overlay[data-visible="false"] {
+   * default class name `.retroarch-overlay--hidden`
+   * ```css
+   * .retroarch-overlay--hidden {
    *   cursor: none;
    *   opacity: 0;
    * }
    * ```
    */
-  className?: string
+  hiddenClassName?: string
   /** timeout to hide overlay when mouse inactive in milliseconds */
   timeout?: number
   children?: React.ReactNode
@@ -40,6 +53,8 @@ type Props = {
 const Overlay: React.FunctionComponent<Props> & OverlayComposition = ({
   children,
   className = "retroarch-overlay",
+  visibleClassName = "retroarch-overlay--visible",
+  hiddenClassName = "retroarch-overlay--hidden",
   timeout = 3000,
 }) => {
   const timerRef = useRef<NodeJS.Timeout>()
@@ -67,8 +82,11 @@ const Overlay: React.FunctionComponent<Props> & OverlayComposition = ({
     <div
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
-      className={className}
-      data-visible={visible ? "true" : "false"}
+      className={clsss(
+        className,
+        !!visible && visibleClassName,
+        !visible && hiddenClassName,
+      )}
     >
       {children}
     </div>

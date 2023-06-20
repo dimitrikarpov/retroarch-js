@@ -30,12 +30,12 @@
   justify-content: flex-end;
 }
 
-.retroarch-overlay[data-visible="true"] {
+.retroarch-overlay--visible {
   cursor: default;
   opacity: 1;
 }
 
-.retroarch-overlay[data-visible="false"] {
+.retroarch-overlay--hidden {
   cursor: none;
   opacity: 0;
 }
