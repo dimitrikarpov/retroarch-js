@@ -12,7 +12,20 @@ export const Emulator: React.FunctionComponent<Props> = ({
   romBinary,
 }) => {
   return (
-    <Retroarch>
+    <Retroarch
+      beforeLoad={() => {
+        console.log("🎬🎬🎬 Starting to load core 🎬🎬🎬")
+      }}
+      onReady={() => {
+        console.log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
+      }}
+      onStart={() => {
+        console.log("🚀🚀🚀 ROM started 🚀🚀🚀")
+      }}
+      onDestroy={() => {
+        console.log("💀💀💀 Core destroyed succefully 💀💀💀")
+      }}
+    >
       <Retroarch.Overlay>
         <div className="overlay__container">
           <Retroarch.Overlay.FullscreenButton switchOn="[ ]" switchOff="X" />

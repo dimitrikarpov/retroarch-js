@@ -1,8 +1,8 @@
+import { ChangeEvent, useState } from "react"
+import { flushSync } from "react-dom"
+import { Emulator } from "./Emulator"
 import "./basic.css"
 import "./main.css"
-import { ChangeEvent, useState } from "react"
-import { Emulator } from "./Emulator"
-import { flushSync } from "react-dom"
 
 function App() {
   const [rom, setRom] = useState<Uint8Array>()

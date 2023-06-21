@@ -23,6 +23,10 @@ type RetroarchProps = {
   children: React.ReactNode
   config?: RetroarchConfig
   coreOptions?: CoreOptions
+  beforeLoad?: () => void
+  onReady?: () => void
+  onStart?: () => void
+  onDestroy?: () => void
 }
 
 const Retroarch: React.FunctionComponent<RetroarchProps> &
@@ -32,6 +36,10 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   children,
   config,
   coreOptions,
+  beforeLoad,
+  onReady,
+  onStart,
+  onDestroy,
 }) => {
   const canvasBoxRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -52,6 +60,8 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
   }: ModuleFragments) => {
     if (!canvasRef.current || retroarchRef.current) return
 
+    beforeLoad?.()
+
     const core = await buildCore({
       canvas: canvasRef.current,
       coreFactory,
@@ -68,6 +78,8 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
       defaultCoreOptions.folder,
     )
 
+    onReady?.()
+
     setIsReadyStart(true)
   }
 
@@ -76,6 +88,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     resizeCanvas(canvasBoxRef)
     setIsStarted(true)
     canvasRef.current?.focus()
+    onStart?.()
   }
 
   useEffect(() => {
@@ -83,6 +96,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
       if (!retroarchRef.current) return
 
       retroarchRef.current.destroy()
+      onDestroy?.()
     }
   }, [])
 
