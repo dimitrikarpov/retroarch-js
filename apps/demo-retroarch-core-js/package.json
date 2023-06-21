@@ -1,5 +1,5 @@
 {
-  "name": "demo-retroarch-core-vanilla-js",
+  "name": "demo-retroarch-core-js",
   "private": true,
   "version": "0.0.0",
   "type": "module",
