@@ -16,7 +16,10 @@
   "name": "retroarch-headless",
   "packageManager": "npm@8.19.2",
   "workspaces": [
-    "apps/*",
+    "examples/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@manypkg/cli": "^0.21.0"
+  }
 }
