@@ -16,6 +16,8 @@ export type Module = {
   resumeMainLoop: () => void
   setCanvasSize: (width: number, height: number) => void
   _abort: () => void
+  _emscripten_force_exit: (message?: string) => void
+  _emscripten_exit_pointerlock: () => void
   JSEvents: {
     removeAllEventListeners: () => void
   }

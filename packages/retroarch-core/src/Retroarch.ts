@@ -29,7 +29,8 @@ export class Retroarch {
 
   destroy() {
     try {
-      this.module._abort()
+      this.module._emscripten_exit_pointerlock()
+      this.module._emscripten_force_exit()
     } catch (e) {
       this.module.JSEvents.removeAllEventListeners()
       this.changeStatus("destroyed")
