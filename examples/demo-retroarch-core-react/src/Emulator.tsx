@@ -29,8 +29,8 @@ export const Emulator = () => {
   const onLoadClick = async () => {
     retroarchInstanceRef.current = await createRetroarch({
       canvas: canvasRef.current as HTMLCanvasElement,
-      coreUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/${core}.js`,
-      wasmUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/${core}.wasm`,
+      coreUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.js`,
+      wasmUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.wasm`,
       romBinary: rom,
       onReady: () => {
         console.log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")

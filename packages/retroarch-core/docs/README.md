@@ -117,8 +117,8 @@ You can get cores directly from this repo through **jsdelivr** CDN network. Draw
 ```js
 const core = "fceumm_libretro"
 
-const coreUrl = `https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/${core}.js`
-const wasmUrl = `https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/${core}.wasm`
+const coreUrl = `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.js`
+const wasmUrl = `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.wasm`
 ```
 
 ### Option 2: Self hosted compiled cores

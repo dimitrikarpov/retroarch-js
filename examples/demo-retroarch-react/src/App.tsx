@@ -26,7 +26,7 @@ function App() {
 
       {rom && (
         <Emulator
-          coreUrl="https://cdn.jsdelivr.net/gh/dimitrikarpov/holy-retroarch/cores/fceumm_libretro.js"
+          coreUrl="https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/fceumm_libretro.js"
           romBinary={rom}
         />
       )}
