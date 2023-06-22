@@ -13,7 +13,7 @@
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "name": "retroarch-headless",
+  "name": "retroarch-js",
   "packageManager": "npm@8.19.2",
   "workspaces": [
     "examples/*",
