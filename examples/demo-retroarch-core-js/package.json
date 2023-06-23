@@ -12,6 +12,7 @@
     "vite": "^4.3.2"
   },
   "dependencies": {
-    "retroarch-core": "*"
+    "retroarch-core": "*",
+    "toastify-js": "^1.12.0"
   }
 }

@@ -1,4 +1,5 @@
 import { createRetroarch } from "retroarch-core"
+import { log } from "./log"
 
 const registerUIHandlers = (retroarch) => {
   /* START HANDLER */
@@ -32,16 +33,16 @@ const main = async () => {
       coreUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.js`,
       romBinary: rom,
       beforeLoad: () => {
-        console.log("🎬🎬🎬 Starting to load core 🎬🎬🎬")
+        log("🎬🎬🎬 Starting to load core 🎬🎬🎬")
       },
       onReady: () => {
-        console.log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
+        log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
       },
       onStart: () => {
-        console.log("🚀🚀🚀 ROM started 🚀🚀🚀")
+        log("🚀🚀🚀 ROM started 🚀🚀🚀")
       },
       onDestroy: () => {
-        console.log("💀💀💀 Core destroyed succefully 💀💀💀")
+        log("💀💀💀 Core destroyed succefully 💀💀💀")
       },
     })
 
