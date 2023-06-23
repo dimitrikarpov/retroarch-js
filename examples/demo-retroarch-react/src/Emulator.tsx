@@ -1,6 +1,7 @@
 import { Retroarch } from "retroarch-react"
 import "./basic.css"
 import "./main.css"
+import { log } from "./log"
 
 type Props = {
   coreUrl: string
@@ -14,16 +15,16 @@ export const Emulator: React.FunctionComponent<Props> = ({
   return (
     <Retroarch
       beforeLoad={() => {
-        console.log("🎬🎬🎬 Starting to load core 🎬🎬🎬")
+        log("🎬🎬🎬 Starting to load core 🎬🎬🎬")
       }}
       onReady={() => {
-        console.log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
+        log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
       }}
       onStart={() => {
-        console.log("🚀🚀🚀 ROM started 🚀🚀🚀")
+        log("🚀🚀🚀 ROM started 🚀🚀🚀")
       }}
       onDestroy={() => {
-        console.log("💀💀💀 Core destroyed succefully 💀💀💀")
+        log("💀💀💀 Core destroyed succefully 💀💀💀")
       }}
     >
       <Retroarch.Overlay>

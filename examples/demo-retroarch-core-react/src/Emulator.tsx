@@ -1,5 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react"
 import { Retroarch, createRetroarch } from "retroarch-core"
+import { log } from "./log"
 
 type Core = "fceumm_libretro" | "genesis_plus_gx_libretro"
 
@@ -32,14 +33,17 @@ export const Emulator = () => {
       coreUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.js`,
       wasmUrl: `https://cdn.jsdelivr.net/gh/dimitrikarpov/retroarch-js/packages/retroarch-core/cores/${core}.wasm`,
       romBinary: rom,
+      beforeLoad: () => {
+        log("🎬🎬🎬 Starting to load core 🎬🎬🎬")
+      },
       onReady: () => {
-        console.log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
+        log("🏋️🏋️🏋️ Core loaded and we ready to start 🏋️🏋️🏋️")
       },
       onStart: () => {
-        console.log("🚀🚀🚀 ROM started 🚀🚀🚀")
+        log("🚀🚀🚀 ROM started 🚀🚀🚀")
       },
       onDestroy: () => {
-        console.log("💀💀💀 Core destroyed succefully 💀💀💀")
+        log("💀💀💀 Core destroyed succefully 💀💀💀")
       },
     })
   }
