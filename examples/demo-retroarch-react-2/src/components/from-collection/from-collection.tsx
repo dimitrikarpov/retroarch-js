@@ -9,7 +9,7 @@ export const FromCollection = () => {
   const romUrl = `/${game.rom}`
 
   return (
-    <div>
+    <div className="flex items-center flex-col gap-5">
       <GameSelect games={games} current={game} setGame={setGame} />
       <Emulator coreUrl={coreUrl} romUrl={romUrl} key={romUrl} />
     </div>
