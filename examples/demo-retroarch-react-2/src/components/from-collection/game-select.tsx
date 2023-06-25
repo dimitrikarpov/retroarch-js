@@ -13,7 +13,7 @@ export const GameSelect: React.FunctionComponent<Props> = ({
   setGame,
 }) => {
   return (
-    <div className="flex justify-center gap-8 mt-7">
+    <div className="flex justify-center gap-8 mt-4">
       {games.map((game, indx) => {
         const isActive = game.rom === current.rom
         const logo = game.core === "fceumm" ? "/NES_logo.svg" : "SEGA_logo.svg"

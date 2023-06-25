@@ -25,19 +25,19 @@ export const FromLocal = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-stretch justify-center gap-3 mt-7">
-        <div className="self-stretch flex flex-col border justify-between border-black rounded-md p-2">
+      <div className="flex items-stretch justify-center gap-3 mt-4">
+        <div className="self-stretch flex flex-col border justify-between border-[#7895B2] rounded-md p-2">
           <span>select ROM</span>
           <input type="file" onChange={onRomUpload} />
         </div>
 
-        <div className="flex flex-col border border-black rounded-md p-2">
+        <div className="flex flex-col border border-[#7895B2] rounded-md p-2">
           <span>select PLATFORM</span>
           <CoreSelect cores={cores} active={core} setCore={setCore} />
         </div>
       </div>
 
-      <div className="border border-black p-3 rounded-md aspect-[800/600] h-[624px] mt-7 w-fit">
+      <div className="border border-[#7895B2] p-3 rounded-md aspect-[800/600] h-[624px] mt-4 w-fit">
         {rom && (
           <Emulator
             coreUrl={coreUrl}

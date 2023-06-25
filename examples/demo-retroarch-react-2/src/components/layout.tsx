@@ -3,9 +3,9 @@ import { cn } from "../utils"
 
 export const Layout = () => {
   return (
-    <div className="flex flex-col mt-5 ">
+    <div className="flex flex-col mt-3 ">
       <div className="flex justify-center">
-        <div className="border border-black w-fit p-5 rounded-md">
+        <div className="border border-[#7895B2] w-fit p-5 rounded-md">
           <NavLink
             to="/"
             className={({ isActive }) =>

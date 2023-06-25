@@ -14,7 +14,7 @@ export const Emulator: React.FunctionComponent<Props> = ({
   romUrl,
 }) => {
   return (
-    <div className="border border-black p-3 rounded-md">
+    <div className="border border-[#7895B2] p-3 rounded-md">
       <Retroarch
         containerClassName={cn(
           "relative flex aspect-[calc(800/600)] justify-center",
