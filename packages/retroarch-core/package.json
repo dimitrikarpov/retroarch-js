@@ -12,12 +12,15 @@
   ],
   "keywords": [
     "retroarch",
+    "emulator",
+    "nintendo",
     "nes",
-    "emulator"
+    "sega",
+    "snes"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dimitrikarpov/holy-retroarch.git"
+    "url": "https://github.com/dimitrikarpov/retroarch-js/tree/main/packages/retroarch-core"
   },
   "scripts": {
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",

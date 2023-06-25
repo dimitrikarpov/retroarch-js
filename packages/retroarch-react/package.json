@@ -10,6 +10,19 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "react",
+    "retroarch",
+    "emulator",
+    "nintendo",
+    "nes",
+    "sega",
+    "snes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimitrikarpov/retroarch-js/tree/main/packages/retroarch-react"
+  },
   "scripts": {
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "build": "tsup src/index.ts --format cjs,esm --dts",
