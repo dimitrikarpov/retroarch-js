@@ -4,6 +4,7 @@ import "./index.css"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Layout } from "./components/layout"
 import { FromCollection } from "./components/from-collection/from-collection"
+import { FromLocal } from "./components/from-local/from-local"
 
 const router = createBrowserRouter([
   {
@@ -14,8 +15,8 @@ const router = createBrowserRouter([
         element: <FromCollection />,
       },
       {
-        path: "/2",
-        element: <p>page /2 content</p>,
+        path: "/local",
+        element: <FromLocal />,
       },
     ],
   },

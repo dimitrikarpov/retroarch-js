@@ -19,7 +19,7 @@ export const Layout = () => {
           </NavLink>
 
           <NavLink
-            to="/2"
+            to="/local"
             className={({ isActive }) =>
               cn(
                 "p-2 rounded-md bg-orange-300 text-white hover:opacity-70 text-lg",
