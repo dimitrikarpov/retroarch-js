@@ -42,10 +42,7 @@ export const Emulator: React.FunctionComponent<Props> = ({
         coreUrl={coreUrl}
         romBinary={romBinary}
       >
-        <>
-          {/* <Retroarch.LoaderScreen.Button /> */}
-          <Retroarch.LoaderScreen.Progress />
-        </>
+        <Retroarch.LoaderScreen.Progress />
       </Retroarch.LoaderScreen>
     </Retroarch>
   )
