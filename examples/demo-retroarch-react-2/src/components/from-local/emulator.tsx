@@ -1,12 +1,15 @@
 import { Retroarch } from "retroarch-react"
 import { cn } from "../../utils"
+import { Overlay } from "../overlay/overlay"
 
 type Props = {
+  coreName: string
   coreUrl: string
   romBinary: Uint8Array
 }
 
 export const Emulator: React.FunctionComponent<Props> = ({
+  coreName,
   coreUrl,
   romBinary,
 }) => {
@@ -23,9 +26,7 @@ export const Emulator: React.FunctionComponent<Props> = ({
         visibleClassName="cursor-default opacity-100"
         hiddenClassName="cursor-none opacity-0"
       >
-        <div className="flex h-[50px] items-center justify-between bg-[rgba(12,12,12,0.719)] px-5 py-0 [&_svg]:h-[48px] [&_svg]:w-[48px] [&_svg]:cursor-pointer [&_svg]:fill-white [&_svg]:opacity-90 hover:[&_svg]:opacity-100">
-          <Retroarch.Overlay.FullscreenButton switchOn="[ ]" switchOff="X" />
-        </div>
+        <Overlay coreName={coreName} />
       </Retroarch.Overlay>
 
       <Retroarch.StartScreen className="flex items-center justify-center absolute inset-0 h-full">
@@ -38,10 +39,7 @@ export const Emulator: React.FunctionComponent<Props> = ({
         romBinary={romBinary}
         loadOnMount
       >
-        <>
-          <Retroarch.LoaderScreen.Button className="border border-teal-500 bg-teal-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline-none focus:shadow-outline" />
-          <Retroarch.LoaderScreen.Progress />
-        </>
+        <Retroarch.LoaderScreen.Progress />
       </Retroarch.LoaderScreen>
     </Retroarch>
   )

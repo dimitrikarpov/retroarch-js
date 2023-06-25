@@ -37,8 +37,15 @@ export const FromLocal = () => {
         </div>
       </div>
 
-      <div className="border border-black p-3 rounded-md aspect-[800/600] h-[600px] mt-7 w-fit">
-        {rom && <Emulator coreUrl={coreUrl} romBinary={rom} key={core} />}
+      <div className="border border-black p-3 rounded-md aspect-[800/600] h-[624px] mt-7 w-fit">
+        {rom && (
+          <Emulator
+            coreUrl={coreUrl}
+            romBinary={rom}
+            coreName={core}
+            key={core}
+          />
+        )}
       </div>
     </div>
   )

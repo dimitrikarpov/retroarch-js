@@ -11,7 +11,12 @@ export const FromCollection = () => {
   return (
     <div className="flex items-center flex-col gap-5">
       <GameSelect games={games} current={game} setGame={setGame} />
-      <Emulator coreUrl={coreUrl} romUrl={romUrl} key={romUrl} />
+      <Emulator
+        coreUrl={coreUrl}
+        romUrl={romUrl}
+        coreName={game.core}
+        key={romUrl}
+      />
     </div>
   )
 }
