@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: |
           pwd
-          npm run build
+          npm run build:ghpages
         working-directory: ./examples/demo-retroarch-react-2
       - name: Setup Pages
         uses: actions/configure-pages@v3
