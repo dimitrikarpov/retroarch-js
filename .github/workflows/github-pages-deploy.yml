@@ -36,10 +36,14 @@ jobs:
           node-version: 18
           cache: "npm"
       - name: Install dependencies
-        run: npm install
+        run: |
+          pwd
+          npm install
         working-directory: ./examples/demo-retroarch-react-2
       - name: Build
-        run: npm run build
+        run: |
+          pwd
+          npm run build
         working-directory: ./examples/demo-retroarch-react-2
       - name: Setup Pages
         uses: actions/configure-pages@v3
