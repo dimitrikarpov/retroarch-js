@@ -27,11 +27,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./examples/demo-retroarch-react-2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Go to demo-retroarch-react-2 dir
-        run: cd examples/demo-retroarch-react-2
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
