@@ -4,7 +4,7 @@ export const LoaderScreenProgress = () => {
   const { isCoreLoaded, isRomLoaded, showLoadButton } =
     useRetroarchLoaderScreen()
 
-  if (showLoadButton) return
+  if (showLoadButton) return null
 
   return (
     <div>
