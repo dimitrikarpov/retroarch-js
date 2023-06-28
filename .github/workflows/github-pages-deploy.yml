@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           pwd
-          npm install
+          npm ci
         working-directory: ./examples/demo-retroarch-react-2
       - name: Build
         run: |
