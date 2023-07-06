@@ -25,7 +25,7 @@ type RetroarchProps = {
   coreOptions?: CoreOptions
   beforeLoad?: () => void
   onReady?: () => void
-  onStart?: () => void
+  onStart?: (retroarch: RetroarchCore) => void
   onDestroy?: () => void
 }
 
@@ -88,7 +88,7 @@ const Retroarch: React.FunctionComponent<RetroarchProps> &
     resizeCanvas(canvasBoxRef)
     setIsStarted(true)
     canvasRef.current?.focus()
-    onStart?.()
+    onStart?.(retroarchRef.current!)
   }
 
   useEffect(() => {

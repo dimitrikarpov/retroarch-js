@@ -1,6 +1,6 @@
 {
   "name": "retroarch-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Dimitri Karpov <karpov.dimon@gmail.com>",
   "description": "Headless Retroarch UI",
   "main": "dist/index.js",
